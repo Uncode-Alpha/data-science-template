@@ -65,9 +65,54 @@ def problem2():
         if mat[i][0]==arr[i]:
             resultArr=np.append(resultArr,mat[i][1])
     print("Result array",resultArr)
+    
+    #4 Given a matrix mat, sort it by the second column
+    mat = np.array([[1,21,3],[5,4,2],[56,12,4]])
+    sortedMat = mat[mat[:,1].argsort()]
+    sortedMat1 = mat[np.argsort(mat[:,1])]
+    print("Sorted matrix by second column \n",sortedMat1)
+    
+    #5 Given an array arr, find the top 4 maximum values
+    arr5 = np.array([90, 14, 24, 13, 13, 590, 0, 45, 16, 50])
+    maxValue = np.argsort(arr5)[-4:][::-1]
+    print("Top 4 maximum values",arr5[maxValue])
+    
+    #6 Find the nearest number from the given number in an array
+    arr6 = np.array([10,55,22,3,6,44,9,54])
+    nearest_to = 50
+    #Array, take a function to compare each element, take the absolute value
+    #We compare the min absolute value associated with the operation
+    #We return the number
+    nearest = arr6[np.abs(arr6-nearest_to).argmin()]
+    print("Nearest number to 50 in array",nearest)
+    
+    return
+
+def exercise4():
+    #1 Given a matrix mat of size 3x3. Find the maximum numbers from each row
+    #say N1, N2, and N3. Result in a matrix by adding:
+    #Where N1 to the upper half elements of the matrix
+    #N2 to the main diagonal elements of mat
+    #N3 to the lower half elements of the matrix
+    mat = np.array([[10,5,9],[2,20,6],[8,3,30]]).reshape(3,3)
+    newMat=np.copy(mat)
+    #Here we need a function that works by slicing the matrix into parts
+    #We have the functions tril_indices(), mask_indices(), diag_indices()
+    #We find the max values of each row
+    n1=np.max(mat,axis=0)[0]
+    n2=np.max(mat,axis=0)[1]
+    n3=np.max(mat,axis=0)[2]
+    #Then we slice the matrix into parts, upper is upper triangular matrix
+    #diag is the diagonal matrix, lower is the lower triangular matrix
+    upper=np.triu_indices(3,1)
+    diag=np.diag_indices(3)
+    lower=np.tril_indices(3,-1)
+    #Then we create a new matrix with the results
+    newMat[upper]+=n1
+    newMat[diag]+=n2
+    newMat[lower]+=n3
+    print("Solution for matrix operations \n",newMat)
     return
 
 
-
-
-problem2()
+exercise4()

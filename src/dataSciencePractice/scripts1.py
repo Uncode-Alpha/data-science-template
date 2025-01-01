@@ -1,6 +1,12 @@
 # Operate over arrays
 import numpy as np
 import sys
+#Operate over images
+import os
+from skimage.io import imread
+from skimage import data
+import matplotlib.pyplot as plt
+
 #1 exercise - basic operation
 def exercise1():
     lst = [5,10,0,200]
@@ -94,25 +100,54 @@ def exercise4():
     #Where N1 to the upper half elements of the matrix
     #N2 to the main diagonal elements of mat
     #N3 to the lower half elements of the matrix
-    mat = np.array([[10,5,9],[2,20,6],[8,3,30]]).reshape(3,3)
-    newMat=np.copy(mat)
-    #Here we need a function that works by slicing the matrix into parts
-    #We have the functions tril_indices(), mask_indices(), diag_indices()
-    #We find the max values of each row
-    n1=np.max(mat,axis=0)[0]
-    n2=np.max(mat,axis=0)[1]
-    n3=np.max(mat,axis=0)[2]
-    #Then we slice the matrix into parts, upper is upper triangular matrix
-    #diag is the diagonal matrix, lower is the lower triangular matrix
-    upper=np.triu_indices(3,1)
-    diag=np.diag_indices(3)
-    lower=np.tril_indices(3,-1)
-    #Then we create a new matrix with the results
-    newMat[upper]+=n1
-    newMat[diag]+=n2
-    newMat[lower]+=n3
-    print("Solution for matrix operations \n",newMat)
+    
+    # Given a matrix mat of size 3x3
+    mat = np.array([[10, 5, 9], [2, 20, 6], [8, 3, 30]]).reshape(3, 3)
+    
+    # Find the maximum numbers from each column
+    n1 = np.max(mat, axis=0)[0]
+    n2 = np.max(mat, axis=0)[1]
+    n3 = np.max(mat, axis=0)[2]
+    
+    # Create a new matrix to store the result
+    newMat = np.copy(mat)
+    
+    # Slice the matrix into parts
+    # upper is the upper triangular matrix (excluding the main diagonal)
+    upper = np.triu_indices(3, 1)
+    # diag is the diagonal matrix
+    diag = np.diag_indices(3)
+    # lower is the lower triangular matrix (excluding the main diagonal)
+    lower = np.tril_indices(3, -1)
+    
+    # Add N1 to the upper half elements of the matrix
+    # newMat[upper] accesses the elements at the upper triangular indices
+    # += n1 adds the value of n1 to these elements in place
+    newMat[upper] += n1
+    
+    # Add N2 to the main diagonal elements of the matrix
+    # newMat[diag] accesses the elements at the diagonal indices
+    # += n2 adds the value of n2 to these elements in place
+    newMat[diag] += n2
+    
+    # Add N3 to the lower half elements of the matrix
+    # newMat[lower] accesses the elements at the lower triangular indices
+    # += n3 adds the value of n3 to these elements in place
+    newMat[lower] += n3
+    
+    # Print the resulting matrix
+    print("Solution for matrix operations \n", newMat)
+    
     return
 
-
-exercise4()
+def imageExcercise():
+    image_path1 = '/Users/josueaguirre/Documents/GitHub/data-science-template/data/dataSciencePractice/DevOps_ToolsWheel.jpeg'
+    image_path2 = '/Users/josueaguirre/Documents/GitHub/data-science-template/data/dataSciencePractice/checker_bilevel.png'
+    img = imread(os.path.join(data.data_dir, image_path2))
+    #print("Image shape",img.shape)
+    plt.imshow(img, cmap='gray')
+    plt.title('Test Image')
+    plt.show()
+    return
+    
+imageExcercise()

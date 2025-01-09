@@ -30,4 +30,19 @@ def exampleDataframe():
     # q  45  85
     return
 
-exampleDataframe()
+def excercise1():
+    #Given following dataframe
+    import pandas as pd
+    df = pd.DataFrame([[0.23,'f1'],[5.36,'f2']],index = list('pq'),
+                    columns = list('ab'))
+    #1 Change the column name from 'a' to 'A'
+    df.rename(columns = {'a':'A'},inplace=True)
+    print('Dataframe after changing column name: \n',df)
+    
+    #2 Add a new column 'c' with random values
+    #3 Change the datatype of column 'A' values to complex
+    #4 Display rows whose any of the element matches with any element of
+    #the given list
+    lst = ['f30','f50','f2','f0'] 
+
+excercise1()

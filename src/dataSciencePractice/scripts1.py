@@ -149,5 +149,68 @@ def imageExcercise():
     plt.title('Test Image')
     plt.show()
     return
+
+def imageProblem():
+    #1 Upload the image into python environment and show the image
+    phantom_path = '/Users/josueaguirre/Documents/GitHub/data-science-template/data/dataSciencePractice/phantom.png'
+    image = imread(os.path.join(data.data_dir, phantom_path))
+    plt.imshow(image)
+    plt.title('Phantom Image')
+    plt.axis('off')
+    #plt.show()
     
-imageExcercise()
+    #2 Perform black and white thresholding with decision boundary set at 0.15. Store the new image in a variable new_img and show it
+    #For this we define the threshold value
+    threshold = 0.15
+    #Values less than or equal to .15 are set to 0 and others equal to 1.
+    new_phantom = image.copy()
+    
+    #when(new_phantom[::0] <= threshold,0,1)
+    
+    
+    #print the new image
+    plt.imshow(new_phantom)
+    plt.title('Thresholded Phantom Image')
+    plt.axis('off')
+    plt.show()
+    return
+
+def algebraProblem():
+    #Solving the next system of linear equations
+    #2x+3y+2z=1
+    #x+3z=2
+    #2x+2y+3z=3
+    #We can solve this system of equations using numpy's linear algebra module
+    #The system of equations can be represented as a matrix equation
+    mat_a=np.array([[2,3,2],[1,0,3],[2,2,3]])
+    mat_b=np.array([1,2,3])
+    if(np.linalg.det(mat_a)!=0):
+        solution = np.linalg.solve(mat_a,mat_b)
+    else:
+        solution = "No solution, as det is 0"
+    print("Solution of the system of equations #1\n",solution)
+    
+    #Solving the multiplication of the following matrix
+    mat_c=np.array([[1,2,3],[4,5,6]])
+    mat_d=np.array([[7,8],[9,10],[11,12]])
+    
+    #We can solve this by using the dot product
+    result = np.dot(mat_c,mat_d)
+    print("Solution of the matrix multiplication #2\n",result)
+    
+    #Solving the next system of linear equations, verifying the solution is unique
+    #-4x+10y=6
+    #2x-5y=3
+    #We can solve this system of equations using numpy's linear algebra module
+    mat_e =np.array([[-4,10],[2,-5]])
+    mat_f =np.array([6,3])
+    #We calculate the determinant
+    if(np.linalg.det(mat_e)!=0):
+        solution = np.linalg.solve(mat_e,mat_f)
+        print("The solution is unique\n", solution)
+    else:
+        print("The solution is not unique as det is 0")
+    return
+    
+    
+algebraProblem()

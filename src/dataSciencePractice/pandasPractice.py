@@ -111,4 +111,29 @@ def excercise2():
     print('New excel sheet with added column\n',pd.read_excel('data/dataSciencePractice/file_df_excercise2.xlsx','Sheet2'))
     return
 
-excercise2()
+def groupsExercise():
+    #Given dataframe
+    sys = ['s1','s1','s1','s1',
+        's2','s2','s2','s2']
+    net_day = ['d1','d1','d2','d2',
+            'd1','d1','d2','d2']
+    spd = [1.3, 11.4, 5.6, 12.3, 
+            6.2, 1.1, 20.0, 8.8]
+    df = pd.DataFrame({'set_name':sys,
+                        'spd_per_day':net_day,
+                        'speed':spd})
+    #Excercise 1 - Construct a dataframe new_df where the given dataset is grouped based on each system (s1 and s2) 
+    #and speed per day (d1 and d2) with the median speed each day per system. Also, provide a secondary name ' Median' for the speed attribute.
+    # Group by 'set_name' and 'spd_per_day' and calculate the median
+    new_df = df.groupby(['set_name', 'spd_per_day'], as_index=False).median()
+
+    # Rename the 'speed' column to 'Median'
+    new_df.rename(columns={'speed': 'Median'}, inplace=True)
+
+    print(new_df)
+    
+    #Excercise 2 - Sort the dataframe new_df in the ascending order of the median speed.
+    print('\n',new_df.sort_values(by='Median', ascending=True))
+    return
+
+groupsExercise()

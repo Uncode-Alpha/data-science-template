@@ -45,4 +45,19 @@ def barGraphExcercise():
     plt.show()
     return
 
+def multipleBarExcercise():
+    #Given score points of Men and Women in a certain game played 5 times with the corresponding errors in the observations:
+    #Plot a bar graph depicting scores for all 5 games along with errors in observation.
+    n_grps = np.arange(5)
+    bar_width = 0.4
+    men_sc = [20, 30, 10, 50, 90]
+    err_men_sc = [2, 3, 4, 5, 4]
+    women = [10, 123, 19, 60, 40]
+    err_women_sc = [1, 6, 2, 8, 7]
+    
+    #We use the bar function from matplotlib and we use the yerr parameter for error parameters
+    plt.bar()
+    
+    return
+
 barGraphExcercise()

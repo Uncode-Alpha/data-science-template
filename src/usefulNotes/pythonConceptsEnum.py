@@ -8,6 +8,7 @@ import pandas as pd
 #PANDAS
 
 #CONCATENATION
+#concat
 #Concatenation of dataframes example
 pd.concat( [data1,data2], axis = 1 )
 #column-wise concatenation
@@ -16,6 +17,7 @@ pd.concat([df1, df2], axis=1)
 pd.concat([df1, df2], ignore_index=True)
 
 #RESHAPE
+#stack unstack
 # Example input
 #                   Year1     Year2
 # Country Game                     
@@ -39,6 +41,7 @@ df.stack(); df.unstack()
 # dtype: float64
 
 #PIVOT
+#pivot
 #Example input
 #       Country   Medal   Game Score
 # Year1     IND    Gold  Game1   9.9
@@ -55,6 +58,7 @@ df.pivot(index = 'Country', columns = 'Medal')
 # USA       None  Game2  Game1   None  8.6    9.5
 
 #GROUPING
+#groupby
 #Example input
 #   Category  Sales
 # 0   Laptop   1000

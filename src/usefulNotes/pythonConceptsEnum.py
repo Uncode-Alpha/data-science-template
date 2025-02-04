@@ -72,3 +72,15 @@ df.groupby(['Category'], sort = False).sum()
 # Category       
 # Laptop     3520
 # Desktop    3400 
+
+#MATPLOTLIB
+
+#plt.savefig
+#Command used to save figures with resolution of 300 and removing extra whitespace bbox_inches
+plt.savefig('filename.png', dpi=300, bbox_inches='tight')
+
+#yscale('log')
+#Command used to specify logarithmic scales on axis
+yscale('log'); xscale('log')
+
+#Bar Graphs
